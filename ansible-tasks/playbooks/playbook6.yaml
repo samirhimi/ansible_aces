@@ -1,0 +1,19 @@
+---
+- name: playbook6
+  hosts: webservers
+  gather_facts: no
+  tasks: 
+    - name: create a folder for tomcat package
+      file:
+        state: directory
+        path: /opt/tomcat/
+        mode: 775
+        owner: root
+        group: root
+    - name: download tomcat server package
+      get_url:
+        url: https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.31/bin/apache-tomcat-10.1.31.tar.gz
+        dest: /opt/tomcat/
+        mode: 775
+        owner: root
+        group: root 

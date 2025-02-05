@@ -1,0 +1,24 @@
+---
+  - name: playbook7
+    hosts: all
+    gather_facts: no
+    tasks:
+      - name: create a folder
+        file: 
+          path: /tmp/testdir
+          state: directory
+          mode: 0740
+          owner: ansible
+      - name: create a file
+        file:
+          path: /tmp/testdir/filetest
+          state: touch
+          mode: 0760 
+          owner: ansible
+      - name: get the status of the file
+        stat:
+          path: /tmp/testdir/filetest
+        register: fts
+      - name: print the filetest status
+        debug:
+          msg: the status of the file is fts   

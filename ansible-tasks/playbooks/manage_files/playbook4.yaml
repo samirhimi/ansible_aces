@@ -1,0 +1,11 @@
+---
+  - name: playbook4
+    hosts: all
+    gather_facts: no
+    tasks:
+      - name: copy file 
+        copy:
+          src: ./testfile
+          dest: /tmp/
+          owner: ansible
+          mode: 660 

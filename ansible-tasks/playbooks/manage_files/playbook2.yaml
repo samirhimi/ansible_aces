@@ -1,0 +1,10 @@
+---
+  - name: test connectivity
+    hosts: all
+    become: true
+    tasks: 
+      - name: ping hosts
+        ping:
+      - name: print message
+        debug:
+          msg: I'am {{ ansible_hostname }} up and running

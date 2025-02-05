@@ -1,0 +1,12 @@
+---
+  - name: playbook6
+    hosts: all
+    gather_facts: no
+    tasks:
+      - name: check the status of testfile
+        stat:
+          path: /tmp/testfile
+        register: tfs
+      - name: print the status of the testfile
+        debug:
+          msg: the status of the file {{ tfs }}

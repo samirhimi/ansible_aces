@@ -1,0 +1,9 @@
+---
+  - name: change permission
+    hosts: all 
+    gather_facts: no
+    tasks:
+      - name: change testfile perm
+        file:
+          path: /tmp/testfile
+          mode: 0744

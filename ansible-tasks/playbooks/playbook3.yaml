@@ -1,0 +1,14 @@
+---
+- name: playbook3
+  hosts: all
+  gather_facts: no
+  tasks: 
+      - name: copy shell file 
+        copy:
+          src:  /home/azureuser/ansible-tasks/playbooks/cfile.sh
+          dest: /tmp/
+          mode: a+x
+      - name: run script on servers
+        shell: /tmp/cfile.sh
+        args:
+          executable: /bin/bash

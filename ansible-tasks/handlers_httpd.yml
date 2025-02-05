@@ -1,0 +1,32 @@
+---
+- name: Get httpd servers up and running
+  hosts: webservers
+
+  tasks:
+    - name: install httpd package
+      ansible.builtin.dnf: 
+        name: httpd
+        state: latest
+                
+    - name: Remove index.html file
+      ansible.builtin.file: 
+        path: /var/www/html/index.html
+        state: absent
+
+    - name: copy index.html file
+      ansible.builtin.template:
+        src: ./template/index.html.j2
+        dest: /var/www/html/index.html
+      notify:
+        restart httpd service
+
+    - name: ensure httpd started
+      ansible.builtin.service: 
+        name: httpd
+        state: started
+    
+  handlers:
+    - name: restart httpd service
+      ansible.builtin.service: 
+        name: httpd
+        state: restarted

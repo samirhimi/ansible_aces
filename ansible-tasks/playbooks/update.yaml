@@ -1,0 +1,9 @@
+---
+- name: update playbook 
+  hosts: all
+  gather_facts: no 
+  tasks:
+  - name: update all hosts
+    dnf:
+      name: "*"
+      state: latest

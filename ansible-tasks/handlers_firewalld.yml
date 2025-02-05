@@ -1,0 +1,27 @@
+---
+- name: Configure firewalld for http server
+  hosts: webservers
+
+  tasks: 
+    - name: Open port for http access
+      ansible.posix.firewalld:
+        service: http
+        state: enabled
+        permanent: true
+        immediate: true
+      notify:
+        - reload firewalld service
+        
+    - name: Ensure firewalls service started
+      ansible.builtin.service:
+        name: httpd
+        state: started
+        enabled: true
+
+
+  handlers:
+    - name: reload firewalld service
+      ansible.builtin.service:
+        name: httpd
+        state: reloaded
+      

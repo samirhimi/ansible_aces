@@ -1,0 +1,24 @@
+[all]
+node0 ansible_host=192.168.2.200
+node1 ansible_host=192.168.2.201
+node2 ansible_host=192.168.2.202
+node3 ansible_host=192.168.2.203
+
+[webservers]
+node0 ansible_host=192.168.2.200
+node1 ansible_host=192.168.2.201
+
+[dbservers]
+node2 ansible_host=192.168.2.202
+
+[lbservers]
+node3 ansible_host=192.168.2.203
+
+[frontend:children]
+webservers
+lbservers
+
+[all:vars]
+ansible_user=root
+ansible_password=ansible
+ansible_python_interpreter=/usr/bin/python3

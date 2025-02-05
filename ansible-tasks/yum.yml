@@ -1,0 +1,12 @@
+---
+- name: update repolist
+  hosts: node1 node0
+
+  tasks:
+    - name: Add multiple repositories
+      yum_repository:
+        name: epel                                 
+        description: EPEL YUM repo                
+        baseurl: 
+        gpgcheck: false
+        enabled: true

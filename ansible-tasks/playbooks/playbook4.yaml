@@ -1,0 +1,13 @@
+---
+- name: playbook4
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: run cron job
+      cron: 
+         name: job scheduled by ansible
+         weekday: "*"
+         minute: "*"
+         hour: "*"
+         user: root
+         job: date >> /tmp/date

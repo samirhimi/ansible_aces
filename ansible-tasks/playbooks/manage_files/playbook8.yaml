@@ -1,0 +1,17 @@
+---
+  - name: playbook8
+    hosts: all
+    gather_facts: no
+    tasks: 
+      - name: create a file
+        file:
+          state: touch
+          path: /tmp/newfile
+          mode: 660
+          owner: ansible
+      - name: add text to the file
+        blockinfile: 
+          path:  /tmp/newfile
+          block: |
+            This is a newly created file by ansibe navigator
+            Please start from a new line

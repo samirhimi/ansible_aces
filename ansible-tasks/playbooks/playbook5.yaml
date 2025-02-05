@@ -1,0 +1,9 @@
+---
+- name: playbook5
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: remove cron job
+      cron:
+        name: "job scheduled by ansible" 
+        state: absent

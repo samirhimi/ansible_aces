@@ -1,0 +1,18 @@
+---
+- name: playbook1
+  hosts: webservers
+  gather_facts: no
+  tasks:
+    - name: uninstall httpd package
+      dnf: 
+        name: httpd
+        state: absent
+    - name:  remove http from firewalld policy
+      firewalld:
+        service: http
+        permanent: true
+        state: disabled
+    - name: reload firewalld service
+      service:
+        name: firewalld
+        state: reloaded

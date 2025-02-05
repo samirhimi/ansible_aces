@@ -1,0 +1,14 @@
+---
+  - name: install package and start the service
+    hosts: webservers
+    gather_facts: no 
+    tasks: 
+      - name: install httpd package
+        dnf: 
+          name: httpd
+          state: present
+
+      - name: start httpd service
+        service:
+          name: httpd
+          state: started
